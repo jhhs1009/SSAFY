@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 박지현
 
 
@@ -90,3 +91,41 @@ For open source projects, say how it is licensed.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+=======
+
+# **README 꿀팁** 
+
+# 큰글씨
+## 큰글씨
+### 큰글씨
+---
+
+**bold text**
+
+*italic*
+
+1. First
+2. Second
+3. Third
+
+- First
+- Second
+- Third
+
+```
+code block
+```
+
+[네이버](https://naver.com)
+
+[이미지](1.jpg)
+
+| 테이블1 | 설명 1 |
+| ------- | ------- |
+| 제목1 | 제목1 |
+| 설명2 | 설명2 |
+
+:joy:
+
+[치트시트](https://www.markdownguide.org/cheat-sheet/)
+>>>>>>> b8a53ab855613c348f003bc7070e34313c30c3b9
