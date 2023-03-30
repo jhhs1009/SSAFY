@@ -11,11 +11,11 @@ def b(num,idx):
     for i in range(N):
         vis[0][i] = 1
         vis[i][idx] = 1
-    # while cnt<N:
-    #     for i in range(1,N):
-    #         for j in range(N):
-    #             if vis[i][j]
-    #         ans +=
+    while cnt<N:
+        for i in range(1,N):
+            for j in range(N):
+                if vis[i][j]
+            ans +=
 
 
 
