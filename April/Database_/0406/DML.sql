@@ -48,3 +48,5 @@ GROUP BY last_name ORDER BY COUNT(*) DESC;
 -- 각 지역별 평균 나이 조회하기
 SELECT country, AVG(age) FROM users
 GROUP BY country;
+
+DROP TABLE users;
