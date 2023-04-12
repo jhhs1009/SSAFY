@@ -5,10 +5,9 @@ from django.views.decorators.http import (
     require_safe,
 )
 from django.contrib.auth.decorators import login_required
-from .models import Movie, Comment
+from .models import Movie, Comment, Hashtag
 from .forms import MovieForm, CommentForm
-
-
+    
 @require_safe
 def index(request):
     movies = Movie.objects.order_by("-pk")
@@ -28,6 +27,10 @@ def create(request):
             movie = form.save(commit=False)
             movie.user = request.user
             movie.save()
+            for word in movie.content.split():
+                if word.startswith("#"):
+                    hashtag, created = Hashtag.objects.get_or_create(content=word)
+                    movie.hashtags.add(hashtag)
             return redirect("movies:detail", movie.pk)
     else:
         form = MovieForm()
@@ -116,3 +119,14 @@ def likes(request, movie_pk):
             movie.like_users.add(request.user)
         return redirect("movies:index")
     return redirect("accounts:login")
+
+
+def hashtag(request, hash_pk):
+    hashtag = get_object_or_404(Hashtag, pk=hash_pk)
+    # pk의 역순으로 정렬해서 가져오기
+    movies = hashtag.movie_set.order_by("-pk")
+    context = {
+        "hashtag" : hashtag,
+        "movies" : movies
+    }
+    return render(request, "movies/hashtag.html", context)

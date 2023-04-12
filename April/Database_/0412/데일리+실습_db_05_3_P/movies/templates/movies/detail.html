@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
 
+{% load make_link %}
+
 {% block content %}
   <h2>영화 정보 상세</h2>
   <hr>
   <h3>{{ movie.pk }} 번째 영화 : {{ movie.title }}</h3>
   <br>
-  <p>{{ movie.content }}</p>
+  <p>{{ movie|hashtag_link|safe }}</p>
   <br>
   <p>{{ movie.created_at }} 작성</p>
   <p>{{ movie.updated_at }} 최종 수정</p>
