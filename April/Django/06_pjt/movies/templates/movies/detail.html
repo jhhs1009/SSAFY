@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>DETAIL</h1>
+  <hr>
+  <div>
+      <h5><strong>title <br></strong></h5>
+      <p>{{ movie.title }}</p>
+      <h5><strong>content</strong><br></h5> 
+      <p>{{ movie.description }}</p> 
+      <h5><strong>user name</strong><br></h5> 
+      <p>{{ movie.user }}</p> 
+  </div>
+  <hr><br>
+  {% if comments %}
+    <p><b>{{comments|length}}개의 댓글</b></p>
+  {% endif %}
+
+    <ul>
+      {% for comment in comments %}
+        <li>
+          {{comment.content}} - {{comment.user}}
+          {% if request.user == comment.user_id %}
+            <form action="{% url 'movies:comments_delete' movie.pk comment.pk%}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="삭제">
+            </form>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>댓글이 없습니다 :(</li>
+      {% endfor %}
+    </ul>
+    
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+        {% csrf_token %}
+        {{comments_form}}
+        <input type="submit" value="저장">
+      </form>
+    {% else %}
+      <a href="{% url 'accounts:login' %}">댓글 달려면 로그인 하라구!</a>
+    {% endif %}
+    <br><hr>
+
+    {% if request.user.is_authenticated %}
+      {% if request.user == movie.user %}
+        <a href="{% url 'movies:update' movie.pk %}">Update</a>
+        <a href="{% url 'movies:delete' movie.pk %}">Delete</a>
+        
+      {% else %}
+        <p><strong>※ 작성자 본인이 아닌 게시글은 수정이나 삭제가 불가능합니다.</strong></p>
+      {% endif %}
+      {% else %}
+        <p><strong>※ 작성자 본인이라면 <a href="{% url 'accounts:login' %}">로그인</a> 후 게시글의 수정, 삭제가 가능합니다.</strong></p>
+    {% endif %}
+    <hr><br>
+    <a href="{% url 'movies:index' %}">BACK</a>
+{% endblock  %}

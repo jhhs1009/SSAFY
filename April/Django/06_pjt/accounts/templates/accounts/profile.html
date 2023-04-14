@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+          
+    <div style="width:80%">
+        <h1><i class="fa-regular fa-user"></i> {{ person.username }}님의 프로필</h1>  
+    </div>
+    
+    <br>  
+
+    {% comment %} 팔로우 {% endcomment %}
+    <div>
+        <div>
+            팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
+        </div>
+        <br>
+        {% if reauest.user != person %}
+            <div>
+                <form action="{% url 'accounts:follow' person.username %}" method="POST">
+                    {% csrf_token %}
+                    {% if request.user in person.followers.all %}
+                        <button style="width:5%;"><i class="fa-solid fa-person-circle-minus" style="color: #ff0000;"></i></button>
+                    {% else %}
+                        <button style="width:5%;"><i class="fa-solid fa-person-circle-plus" style="color: #178415;"></i></button>
+                    {% endif %}
+                </form>
+            </div>
+        {% endif %}
+    </div>
+    {% comment %} 팔로우 여기 위까지 {% endcomment %}
+
+    <hr>
+    <h5><strong>{{ person.username }}'s 게시글</strong></h5>
+    {% for movies in person.movie_set.all %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ movies.title }}</h5>
+                <p class="card-text">{{ movies.description }}</p>
+                <a href="{% url 'movies:detail' movies.pk %}" class='btn btn-primary'>자세히 보기</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+    <hr><br><br>
+
+
+    <h5><strong>{{ person.username }}님이 <i class="fa-solid fa-heart" style="color: #f31b67;"></i>한 게시글</strong></h5>
+    {% for movies in person.like_movies.all %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ movies.title }}</h5>
+                <p class="card-text">{{ movies.description }}</p>
+                <a href="{% url 'movies:detail' movies.pk %}" class='btn btn-primary'>자세히 보기</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+    <hr><br><br>
+        <a href="{% url 'movies:index' %}" class="btn btn-success">목록보기</a>
+
+
+{% comment %} 
+    {% for comment in person.comment_set.all %}
+        <div>{{ comment.content }}</div>
+    {% endfor %}
+    <hr>
+    <h2>{{person.username}}'s 좋아요한 게시글</h2>
+    {% for movies in person.like_moviess.all %}
+        <div>{{movies.title}}</div>
+    {% endfor %}
+    <hr>
+    <a href="{% url 'moviess:index' %}">back</a> {% endcomment %}
+{% endblock content %} 
