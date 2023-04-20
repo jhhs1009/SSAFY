@@ -44,25 +44,26 @@
                 col.appendChild(board)
 
                 if (i==0 && j%2==0) {
-                    const text = document.createElement('h1')
+                    const text = document.createElement('h2')
+                    const text2 = document.createElement('p')
                     let movie1 = 'title : ' + movieInfo['results'][j]['title']
+                    let movie2 = 'release_date : ' + movieInfo['results'][j]['release_date']
                     text.innerText = movie1
+                    text2.innerText = movie2
                     const textdiv = document.querySelector('board')
                     board.appendChild(text)
-
-                    const text2 = document.createElement('p')
-                    let movie2 = 'release_date : ' + movieInfo['results'][j]['release_date']
-                    text.innerText = movie2
-                    const textdiv2 = document.querySelector('board')
                     board.appendChild(text2)
-                    
                 }
                 if (i==2 && j%2==0) {
-                    const text = document.createElement('h1')
-                    let movie1 = 'title : ' + movieInfo['results'][5+j]['title']
+                    const text = document.createElement('h2')
+                    const text2 = document.createElement('p')
+                    let movie1 = 'title : ' + movieInfo['results'][j]['title']
+                    let movie2 = 'release_date : ' + movieInfo['results'][j]['release_date']
                     text.innerText = movie1
+                    text2.innerText = movie2
                     const textdiv = document.querySelector('board')
                     board.appendChild(text)
+                    board.appendChild(text2)
                 }
                 
             }
