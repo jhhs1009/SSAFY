@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .col {
+            width: 100px;
+            height: 100px;
+        }
+        .board {
+            width: 800px;
+            height: 800px;
+            border : 2px solid black;
+        }
+    
+        .row {
+            display: flex;
+        }
+        .black {
+            background-color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        const board = document.createElement('div')
+        const div = document.querySelector('body')
+        board.classList.add('board')
+        div.appendChild(board)
+
+        for (let i=0; i<8; i++) {
+            const row = document.createElement('div')
+            row.classList.add('row')
+            board.appendChild(row)
+
+            for (let j=0; j<8; j++) {
+                const col = document.createElement('div')
+                col.classList.add('col')
+                row.appendChild(col)
+                if (i%2==0 && j%2==0) {
+                    col.classList.add('black')
+                }
+                if (i%2==1 && j%2==1) {
+                    col.classList.add('black')
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

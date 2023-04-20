@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><ul></ul></div>
+    
+
+    <script>
+
+        const title = document.createElement('h1')
+        title.innerText = "오늘의 Todo"
+        const div = document.querySelector("div")
+        div.prepend(title)
+
+        let u = document.querySelector("ul")
+        let l1 = document.createElement("li")
+        l1.innerText = "양치하기"
+        u.appendChild(l1)
+
+        let l2 = document.createElement("li")
+        l2.innerText = "공부하기"
+        u.appendChild(l2)
+
+        let l3 = document.createElement("li")
+        l3.innerText = "휴식하기"
+        u.appendChild(l3)
+
+    </script>
+
+</body>
+</html>
