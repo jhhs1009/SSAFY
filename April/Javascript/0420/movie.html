@@ -10,17 +10,22 @@
         .board {
             width: 250px;
             height: 400px;
-            border: 2px solid black; 
+            /* border: 2px solid black;  */
         }
 
         .row {
             width: 1250px;
             height: 1200px;
-            border: 2px solid black; 
+            /* border: 2px solid black;  */
         }
 
         .col {
             display: flex;
+        }
+
+        .size {
+            width: 250px;
+            height: 400px;
         }
     </style>
 </head>
@@ -44,6 +49,11 @@
                 col.appendChild(board)
 
                 if (i==0 && j%2==0) {
+                    let poster = document.createElement("img")
+                    poster.setAttribute("src", 'https://image.tmdb.org/t/p/original/' + movieInfo['results'][j]['poster_path'])
+                    poster.classList.add('size')
+                    board.appendChild(poster)
+
                     const text = document.createElement('h2')
                     const text2 = document.createElement('p')
                     let movie1 = 'title : ' + movieInfo['results'][j]['title']
@@ -53,12 +63,20 @@
                     const textdiv = document.querySelector('board')
                     board.appendChild(text)
                     board.appendChild(text2)
+                
+                    
                 }
                 if (i==2 && j%2==0) {
+                    let poster = document.createElement("img")
+                    poster.setAttribute("src", 'https://image.tmdb.org/t/p/original/' + movieInfo['results'][5+j]['poster_path'])
+                    poster.classList.add('size')
+                    board.appendChild(poster)
+
+
                     const text = document.createElement('h2')
                     const text2 = document.createElement('p')
-                    let movie1 = 'title : ' + movieInfo['results'][j]['title']
-                    let movie2 = 'release_date : ' + movieInfo['results'][j]['release_date']
+                    let movie1 = 'title : ' + movieInfo['results'][5+j]['title']
+                    let movie2 = 'release_date : ' + movieInfo['results'][5+j]['release_date']
                     text.innerText = movie1
                     text2.innerText = movie2
                     const textdiv = document.querySelector('board')
