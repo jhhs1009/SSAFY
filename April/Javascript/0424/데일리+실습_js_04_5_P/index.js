@@ -82,4 +82,4 @@ const picks = ['scissors', 'paper', 'rock']
 
 // 이미지 소스 바꿔줄 태그
 
-const 
+// 깃랩 확인해보기....
