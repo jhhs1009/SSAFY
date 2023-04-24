@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            div {
+            background-color: #ccc;
+            padding: 20px;
+            display: block;
+            }
+
+            p {
+            background-color: #aaa;
+            padding: 20px;
+            display: block;
+            }
+
+            span {
+            background-color: #888;
+            padding: 20px;
+            display: block;
+            }
+
+            section {
+                background-color: #4477AA;
+                padding: 0 10px 30px 20px;
+                margin: 50px 0 0 0;
+            }
+
+            section:before {
+                background-color: #114477;
+                padding: 5px;
+                margin: 0 0 0 -20px;
+                border-bottom: 2px solid #002244;
+                border-bottom-right-radius: 5px;
+                font-size: 12px;
+                font-weight: bold;
+                color: white;
+                content:"결과 콘솔";
+            }
+
+    </style>
+</head>
+<body>
+    <div>
+        DIV
+        <p>
+            P
+            <span>
+                span
+            </span>
+        </p>
+    </div>
+    <script>
+        // div
+        const d = document.querySelector("div")
+        d.addEventListener("click", function(e) {
+            console.log(e.target, "여기는 div 태그의 이벤트 함수")
+        })
+
+        // p
+        const p = document.querySelector("p")
+        p.addEventListener("click", function(e) {
+            console.log(e.target, "여기는 p태그의 이벤트")
+        })
+
+        // span
+        const s = document.querySelector("span")
+        s.addEventListener("click", function(e) {
+            console.log(e.target, "여기는 span태그의 이벤트")
+            // 상위 요소로 이벤트 전달 중단
+            e.stopPropagation()
+            // 상위 뿐만 아니라 이 이벤트 함수 말고 다른 이벤트 함수 xx
+            e.stopImmediatePropagation()
+        })
+    </script>
+</body>
+</html>
