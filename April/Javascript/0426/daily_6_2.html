@@ -1,0 +1,65 @@
+{% block content %}
+<h1>{{ person.username }}님의 프로필</h1>
+
+{% with followings=person.followings.all followers=person.followers.all %}
+  <div>
+    <div>
+      팔로잉 : <span id="followers-count">{{ followers|length }}</span> / 
+      팔로워 : <span id="followings-count">{{ followings|length }}</span>
+    </div>
+    {% if request.user != person %}
+      <div>
+        // form 요소 선택을 위해 id 속성 지정 및 선택
+        // 불필요해진 action과 method 속성은 삭제
+        <form id="follow-form" data-user-id="{{ person.pk }}">
+          {% csrf_token %}
+          {% if user in followers %}
+            <button>언팔로우</button>
+          {% else %}
+            <button>팔로우</button>
+          {% endif %}
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endwith %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.querySelector('#follow-form')
+    // 토큰
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    // form 요소에 이벤트 핸들러 작성 및 submit 이벤트 취소
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+
+      const userId = event.target.dataset.userId
+      // axios 요청 준비
+      axios({
+        method: 'post',
+        url: `/accounts/${userId}/follow/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+
+      .then((response) => {
+        const isFollowed = response.data.is_followed
+        const followBtn = document.querySelector('#follow-form > input[type=submit]')
+        if (isFollowed === true) {
+          followBtn.value = '언팔로우'
+        } else {
+          followBtn.value = '팔로우'
+        }
+        const followersCountTag = document.querySelector('#followers-count')
+        const followingsCountTag = document.querySelector('#followings-count')
+
+        const followersCount = response.data.followers_count
+        const followingsCount = response.data.followings_count
+
+        followersCountTag.innerText = followersCount
+        followingsCountTag.innerText = followingsCount
+      })
+
+    })
+  </script>
+{% endblock script %}
