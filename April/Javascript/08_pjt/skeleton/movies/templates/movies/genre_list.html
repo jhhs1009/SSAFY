@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h1><strong>장르별 영화 추천 목록</strong></h1>
+    <hr><br>
+    🖱 <a href="{% url 'movies:list' '로맨스' %}"><strong>[로맨스 영화 추천]</strong></a> <br><br>
+
+    🖱 <a href="{% url 'movies:list' '드라마' %}"><strong>[드라마 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' 'SF' %}"><strong>[SF 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '모험' %}"><strong>[모험 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '판타지' %}"><strong>[판타지 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '애니메이션' %}"><strong>[애니메이션 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '공포' %}"><strong>[공포 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '액션' %}"><strong>[액션 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '코미디' %}"><strong>[코미디 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '역사' %}"><strong>[역사 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '서부' %}"><strong>[서부 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '스릴러' %}"><strong>[스릴러 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '범죄' %}"><strong>[범죄 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '	다큐멘터리' %}"><strong>[다큐멘터리 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '미스터리' %}"><strong>[미스터리 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '음악' %}"><strong>[음악 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '가족' %}"><strong>[가족 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' '전쟁' %}"><strong>[전쟁 영화 추천]</strong></a><br><br>
+
+    🖱 <a href="{% url 'movies:list' 'TV 영화' %}"><strong>[TV 영화 영화 추천]</strong></a><br><br>
+
+    <hr><br>
+    <a href="{% url 'movies:index' %}">[목록으로]</a>
+
+    
+
+{% endblock %}

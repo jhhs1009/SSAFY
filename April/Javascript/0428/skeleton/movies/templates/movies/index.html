@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Movies</h1>
+  <br>
+  <h5>🎁 총 {{movies|length}}개의 영화를 보여줍니다.</h5>
+  <div style="background-color:rgba(254, 255, 182, 0.795); padding-top: 18px; padding-bottom: 2px;">
+    <ul>
+      <p><u><strong>※ 관리자가 추천하는 평점과 관람객이 높은 10개의 영화!</strong></u></p>
+      🖱 <a href="{% url 'movies:recommended' %}"><strong>[영화 추천]</strong></a>
+      <br><br>
+
+      <p><u><strong>※ 관리자가 추천하는 장르별 10개의 영화!</strong></u></p>
+
+      🖱 <a href="{% url 'movies:romance' %}"><strong>[로맨스 영화 추천]</strong></a>
+
+      🖱 <a href="{% url 'movies:drama' %}"><strong>[드라마 영화 추천]</strong></a>
+
+      🖱 <a href="{% url 'movies:Sf' %}"><strong>[SF 영화 추천]</strong></a>
+
+    </ul>
+  </div>
+  
+  <hr>
+  {% for movie in movies %}
+    <h5><strong>{{movie.id}}. {{movie.title}}</strong></h5>
+    <img src="{{movie.poster_path}}" alt="" style="width:40%">
+    <ul>
+      <br>
+      <li><p><strong>평점 : {{movie.vote_average}}</strong></p></li>
+      <li><p><strong>genre : </strong>{% for genre in movie.genres.all %}{{genre.name}}{% endfor %}</p></li>
+    </ul>
+      <p>✔ <a href="{% url 'movies:detail' movie.pk %}">상세보기</a></p>
+      {% if movie.vote_average >= 8.5 %}
+        <p>📢 평점이 8.5 이상이므로 추천합니다~!</p>
+      {% else %}
+        <p>📢 볼만한 작품!</p>
+      {% endif %}
+    
+    <br><hr>
+  {% endfor %}
+{% endblock %}

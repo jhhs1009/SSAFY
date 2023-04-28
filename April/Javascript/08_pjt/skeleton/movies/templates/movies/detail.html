@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1><strong>{{movie.title}}</strong></h1>
+<br><hr>
+<img src="{{movie.poster_path}}" alt="" style="width:60%">
+<br> <br>
+<ul>
+    <li><p style="font-size: 30px;"><strong>title: </strong>{{movie.title}}</p></li>
+    <li><p style="font-size: 30px;"><strong>release_date : </strong>{{movie.release_date}}</p></li>
+    <li><p style="font-size: 30px;"><strong>popularity : </strong> {{movie.popularity}}</p></li>
+    <li><p style="font-size: 30px;"><strong>revote_count : </strong> {{movie.vote_count}}</p></li>
+    <li><p style="font-size: 30px;"><strong>vote_average : </strong> {{movie.vote_average }}</p></li>
+    <li><p style="font-size: 30px;"><strong>genre : </strong>{% for genre in movie.genres.all %}{{genre.name}}{% endfor %}</p></li>
+    {% if movie.overview %}
+        <li><p style="font-size: 30px;"><strong> overview  : </strong>{{movie.overview }}</p></li>
+    {% else %}
+        <br>
+        <p>🙏 상세 줄거리를 지원하지 않습니다. 🙏</p>
+    {% endif %}
+    
+</ul>
+<br><hr>
+<br>
+<a href="{% url 'movies:index' %}" style="font-size: 20px;">[목록으로]</a>
+<br><br>
+{% endblock %}

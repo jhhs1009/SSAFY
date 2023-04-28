@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+{% for p in page1 %}
+{% if p.0 == 1 %}
+<h1><strong>{{p.5}} 영화 추천</strong></h1>
+<hr><br>
+{% endif %}
+
+
+    <p><strong>{{p.0}}. {{p.1}}</strong></p>
+    <img src="{{p.4}}" alt="" style="width:50%">
+    <br> <br>
+    <ul>
+        <li><p>평점 : {{p.2}}</p></li>
+        <li><p>장르 : {{p.5}}</p></li>
+        <li><p><a href="{% url 'movies:detail' p.3 %}">상세보기</a></p></li>
+    </ul>
+    <br><hr>
+
+{% endfor %}
+
+<br>
+<a href="{% url 'movies:index' %}">[목록으로]</a>
+<br><br>
+{% endblock %}

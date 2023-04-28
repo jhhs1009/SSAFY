@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1><strong>영화 추천</strong></h1>
+<br><hr>
+
+{% for p in page1 %}
+    <p><strong>{{p.0}}. {{p.1}}</strong></p>
+    <img src="{{p.4}}" alt="">
+    <ul>
+        <li><p>평점 : {{p.2}}</p></li>
+        <li><p><a href="{% url 'movies:detail' p.3 %}">상세보기</a></p></li>
+    </ul>
+    <br><hr>
+    
+        
+{% endfor %}
+{% endblock %}
